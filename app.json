@@ -16,7 +16,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ylvkar01.ServiceFinder"
+      "package": "com.ludwigwredendal.ServiceFinder"
     },
     "web": {
       "bundler": "metro",
