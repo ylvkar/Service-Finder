@@ -16,7 +16,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ludwigwredendal.ServiceFinder"
+      "package": "com.ylvkar01.ServiceFinder"
     },
     "web": {
       "bundler": "metro",
@@ -43,7 +43,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "49f37596-d20c-4c21-b122-3f02b23ae6c1"
+        "projectId": "fe2f33aa-bce8-4bd2-91fa-0b553e048e9b"
       }
     }
   }
