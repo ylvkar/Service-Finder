@@ -139,9 +139,9 @@ const styles = StyleSheet.create({
     activity_box: {
         padding: 10,
         marginBottom: 20,
-        borderWidth: 2,       // Thickness of the border
-        borderColor: "#FF0000", // Color of the border (red in this example)
-        borderRadius: 10,     // Optional: Rounded corners
+        borderWidth: 2,       
+        borderColor: "#FF0000", 
+        borderRadius: 10,     
     },    
     PageName:{
 
