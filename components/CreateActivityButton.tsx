@@ -32,7 +32,7 @@ export default function CreateActivityButton() {
       {isPopupVisible && (
         <PopupActivity
           title="Skapa aktivitet"
-          info="T"
+          info="Skriv något värdefullt här"
           onClose={handleClosePopup}
         />
       )}
