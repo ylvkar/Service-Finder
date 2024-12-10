@@ -1,35 +1,43 @@
-import React from "react";
-import Octicons from '@expo/vector-icons/Octicons';
+import React, { useState } from "react";
 import {
-    Text,
-    View,
-    Image,
-    TouchableOpacity,
-    StyleSheet,
-    Dimensions,
-    ScrollView,
-  } from "react-native";
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { PopupActivity } from "./PopupActivity"; 
 
-  {/* "Plus ikonen" som användaren trycker för att skapa en aktivitet. Vid "onClick" ska användaren få skapa aktivitet popUp alternativt
-    bli navigerad till separat sida*/}
-export default function CreateActivityButton(){
-    return(
+export default function CreateActivityButton() {
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
-        <View style={styles.container}>
-            
-            <View style={styles.activityButtonContainer}>
-                <View style={styles.createActivityButton}>
-                    {/*<Octicons name="plus-circle" size={80} color="black" /> */}
-                    <Image source={require("../assets/images/createActivityButton.png")}
-                        style={{ width: 100, height: 100 }}>
-                    </Image>
-                </View>
-            </View>
-           
-            
-        </View>
+  const handleOpenPopup = () => {
+    setPopupVisible(true);
+  };
 
-    );
+  const handleClosePopup = () => {
+    setPopupVisible(false);
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.activityButtonContainer}>
+        <TouchableOpacity onPress={handleOpenPopup} style={styles.createActivityButton}>
+          <Image
+            source={require("../assets/images/createActivityButton.png")}
+            style={{ width: 100, height: 100 }}
+          />
+        </TouchableOpacity>
+      </View>
+
+      {isPopupVisible && (
+        <PopupActivity
+          title="Skapa aktivitet"
+          info="T"
+          onClose={handleClosePopup}
+        />
+      )}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -51,5 +59,3 @@ const styles = StyleSheet.create({
     createActivityButton: {
     },
 });
-
-

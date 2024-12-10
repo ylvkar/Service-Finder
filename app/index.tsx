@@ -11,9 +11,11 @@ export default function Index() {
       <Activity />
       <CreateActivityButton />
       <HamburgerMenu />
+      <ProfileButton />
+
     */}
-    
-    <ProfileButton />
+          <CreateActivityButton />
+
     
 
     </View>
