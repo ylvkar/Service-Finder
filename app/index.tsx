@@ -3,7 +3,7 @@ import Activity from "../components/Activity";
 
 export default function Index() {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Activity />
 
     </View>
