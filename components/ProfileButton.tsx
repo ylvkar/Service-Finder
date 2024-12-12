@@ -1,5 +1,6 @@
 import React from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
+
 import {
     Text,
     View,
@@ -9,22 +10,24 @@ import {
     Dimensions,
     ScrollView,
   } from "react-native";
+  
 
-  {/* Profil knappen i vänster nedre hörn, via den ska man nå sin profil */}
-export default function ProfileButton(){
-    return(
+  interface ProfileButtonProps {
+    onPress: () => void;
+  }
+
+  export default function ProfileButton({ onPress }: ProfileButtonProps) {
+    return (
         <View style={styles.container}>
-
-            <View style={styles.profileButtonContainer}>
+            <TouchableOpacity style={styles.profileButtonContainer} onPress={onPress}>
                 <View style={styles.profileButton}> 
-                    <AntDesign name="user" size={50} color="black" />          
+                    <AntDesign name="user" size={50} color="black"  /> 
                 </View>
-            </View>
-           
-            
+            </TouchableOpacity>
         </View>
+
     );
-}
+  };
 
 const styles = StyleSheet.create({
     container: {
@@ -48,3 +51,4 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
 });
+

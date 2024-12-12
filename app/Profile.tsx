@@ -1,63 +1,65 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { useRoute } from '@react-navigation/native'; 
+import { RootStackParamList } from '../components/RootStackParamList'; 
+import { RouteProp } from '@react-navigation/native';
 
-// Bilder
 const pic = require("../assets/images/pic.jpg");
 const noPic = require("../assets/images/noPic.png");
 const catWeights = require("../assets/images/weight.png");
 const catKnit = require("../assets/images/knitting.png");
 const catBake = require("../assets/images/bakery.png");
 
-// Definiera typ för kategori
 type Category = "Träna" | "Sticka" | "Baka";
 
-// Key-Value lista som kopplar kategorier till bilder
 const categoryImages: Record<Category, any> = {
   "Träna": catWeights,
   "Sticka": catKnit,
   "Baka": catBake,
 };
 
-// Profilprop
-type profileProps = {
-  firstName: string,  
-  surName: string,     
-  age: number,        
-  profilePic: boolean; 
-  categories?: string[],    
-  prevPosts?: string[]
-};
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Profile'>;
 
-export default function Profile(props: profileProps) {
-  const { firstName, surName, age, profilePic, categories = [], prevPosts } = props;
-  
+export default function Profile() {
+  const route = useRoute<ProfileScreenRouteProp>(); 
+  const user = route?.params?.profile;
+
+  if (!user) {
+    console.log("Ingen profil hittades ://");
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Ingen profil hittades ://</Text>
+      </View>
+    );
+  }
+
+  const { profile } = route.params;
+
   return (
     <View style={styles.container}>
-      {/* Profilbild */}
-      {profilePic ? (
+      {profile.profilePic ? (
         <Image source={pic} style={styles.profileImage} />
       ) : (
         <Image source={noPic} style={styles.profileImage} />
       )}
       
-      <Text style={styles.name}>{firstName} {surName}</Text>
-      <Text style={styles.text}>{age} år</Text>
+      <Text style={styles.name}>{profile.firstName} {profile.surName}</Text>
+      <Text style={styles.text}>{profile.age} år</Text>
       
-      {/* Tidigare inlägg */}
-      {prevPosts && prevPosts.length > 0 && (
+      {profile.prevPosts && profile.prevPosts.length > 0 && (
         <View style={styles.postsContainer}>
           <Text style={styles.subHeader}>Tidigare inlägg</Text>
-          {prevPosts.map((item, index) => (
+          {profile.prevPosts.map((item, index) => (
             <Text key={index} style={styles.listItem}>{item}</Text>
           ))}
         </View>
       )}
       
-      {categories.length > 0 && (
+      {profile.categories && profile.categories.length > 0 && (
         <View style={styles.postsContainer}>
           <Text style={styles.subHeader}>Kategorier</Text>
           <View style={styles.categoriesContainer}>
-            {categories.map((item, index) => {
+            {profile.categories.map((item, index) => {
               const categoryImage = categoryImages[item as Category]
               return (
                 <View key={index} style={styles.categoryBox}>

@@ -1,44 +1,42 @@
-import { Text, View, StyleSheet } from "react-native";
-import Activity from "../components/Activity";
-import CreateActivityButton from "../components/CreateActivityButton";
-import HamburgerMenu from "../components/HamburgerMenu";
-import ProfileButton from "../components/ProfileButton";
-import Profile from "../components/profile"; 
+import React from 'react';
+import { View, Button, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../components/RootStackParamList';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Profile } from '../components/RootStackParamList'; 
+import ProfileButton from '@/components/ProfileButton';
 
+type IndexScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Index'>;
 
-export default function Index() {
-  const dummyProfile = {
-    firstName: "Coola",
-    surName: "Tanten",
+const Index = () => {
+  const navigation = useNavigation<IndexScreenNavigationProp>();
+
+  const dummyProfile: Profile = {
+    id: 123,
+    firstName: 'Coola',
+    surName: 'Tanten',
     age: 68,
-    profilePic: true, 
-    categories: ["Träna", "Sticka", "Baka"],
-    prevPosts: ["Post 1", "Post 2", "Post 3"], 
+    profilePic: true,
+    categories: ['Träna', 'Sticka', 'Baka'],
+    prevPosts: ['Post 1', 'Post 2', 'Post 3'],
+  };
+
+  const navigateToProfile = () => {
+    navigation.navigate('Profile', { profile: dummyProfile });
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{ flex: 1 }}>
       {/*
       <Activity />
       <CreateActivityButton />
       <HamburgerMenu />
       <ProfileButton />
-      <CreateActivityButton />
+
     */}
-      <Text style={styles.text}>Profil</Text>
-      <Profile {...dummyProfile} />
+      <ProfileButton onPress={navigateToProfile} />
     </View>
   );
-}
+};
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 32,
-    fontWeight: 'bold',  },
-});
+export default Index;
